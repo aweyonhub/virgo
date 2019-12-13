@@ -233,6 +233,12 @@ static void virgo_toggle_hotkeys(Virgo *v)
 	unsigned i;
 	v->handle_hotkeys = !v->handle_hotkeys;
 	if (v->handle_hotkeys) {
+	/*  --- awey change alt + 1,2,3,4 to win + z,x,c,v 
+		for (i = 0; i < NUM_DESKTOPS; i++) {
+			register_hotkey(i * 2, MOD_ALT | MOD_NOREPEAT, i + 1 + '0');
+			register_hotkey(i * 2 + 1, MOD_CONTROL | MOD_NOREPEAT, i + 1 + '0');
+		}
+	*/
 	register_hotkey(0, MOD_WIN | MOD_NOREPEAT, 'Z');
 	register_hotkey(1, MOD_WIN | MOD_SHIFT | MOD_NOREPEAT, 'Z');
 	register_hotkey(2, MOD_WIN | MOD_NOREPEAT, 'X');
@@ -251,7 +257,18 @@ static void virgo_toggle_hotkeys(Virgo *v)
 
 static void virgo_init(Virgo *v)
 {
+/*	unsigned i; */
 	v->handle_hotkeys = 1;
+/* --- awey change alt + 1,2,3,4 to win + z,x,c,v 
+	for (i = 0; i < NUM_DESKTOPS; i++) {
+		register_hotkey(i * 2, MOD_ALT | MOD_NOREPEAT, i + 1 + '0');
+		register_hotkey(i * 2 + 1, MOD_CONTROL | MOD_NOREPEAT, i + 1 + '0');
+	}
+	register_hotkey(i * 2, MOD_ALT | MOD_CONTROL | MOD_SHIFT | MOD_NOREPEAT,
+					'Q');
+	register_hotkey(i * 2 + 1, MOD_ALT | MOD_CONTROL | MOD_SHIFT | MOD_NOREPEAT,
+					'S');
+*/
 	register_hotkey(0, MOD_WIN | MOD_NOREPEAT, 'Z');
 	register_hotkey(1, MOD_WIN | MOD_SHIFT | MOD_NOREPEAT, 'Z');
 	register_hotkey(2, MOD_WIN | MOD_NOREPEAT, 'X');
@@ -260,6 +277,8 @@ static void virgo_init(Virgo *v)
 	register_hotkey(5, MOD_WIN | MOD_SHIFT | MOD_NOREPEAT, 'C');
 	register_hotkey(6, MOD_WIN | MOD_NOREPEAT, 'V');
 	register_hotkey(7, MOD_WIN | MOD_SHIFT | MOD_NOREPEAT, 'V');
+
+
 
 	register_hotkey(8, MOD_WIN | MOD_SHIFT | MOD_NOREPEAT, 'W');
 	register_hotkey(9, MOD_WIN | MOD_SHIFT | MOD_NOREPEAT, 'S');
